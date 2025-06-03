@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import EmailEditor, { EditorRef, EmailEditorProps } from 'react-email-editor';
+import EmailEditor from 'react-email-editor';
 
 const EmailEditor = ({ onLoad, onDesignLoad }) => {
   const editorRef = useRef(null);
 
+  //initialise unlayer
   useEffect(() => {
     unlayer.init({
       id: 'editor-container',
@@ -13,14 +13,7 @@ const EmailEditor = ({ onLoad, onDesignLoad }) => {
           enabled: true
         }
       },
-      appearance: {
-        theme: 'dark',
-        panels: {
-          tools: {
-            dock: 'right'
-          }
-        }
-      },
+    
       // Load blank design or a preloaded one
       design: {},
 

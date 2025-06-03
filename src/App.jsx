@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import "./App.css";
-import EmailEditor from "react-email-editor";
-import { unlayerSampleJSON } from "./unlayerSampleJSON";
-import { sendEmail } from './api';
+import EmailEditor from "react-email-editor"; //import the plugin
+import { unlayerSampleJSON } from "./unlayerSampleJSON"; //json schema for the editor content
+import { sendEmail } from './api'; //import sendgrid api
 import { useState } from 'react';
 
 const emailJSON = unlayerSampleJSON;
@@ -14,7 +14,6 @@ const App = () => {
     console.log("ref: ", emailEditorRef.current);
     emailEditorRef.current.editor.loadDesign(emailJSON);
 
-    // This autosaves design after every change
   };
 
 
@@ -24,6 +23,7 @@ const App = () => {
     setEmail(email);
   })
 
+  //grab the html from the editor parse it to sendEmail
   const handleSendEmail = async (e) => {
     e.preventDefault();
     emailEditorRef.current.editor.exportHtml(async (data) => {
@@ -39,6 +39,8 @@ const App = () => {
 
   return (
     <div>
+      <h1>Email Editor</h1>
+      <p>Use the editor to design an email! Then use the input below to send to the desired email address (note ask Chris for api key?)</p>
     <EmailEditor
       ref={emailEditorRef}
       onLoad={onLoad}
